@@ -138,4 +138,13 @@ class ListManager {
 
         return $this;
     }
+
+    /**
+     * Get min=2,
+     */ 
+    public function getName()
+    {
+        return $this->name;
+    }
+
 }
