@@ -1,78 +1,90 @@
 {% extends "base.html.twig" %}
 
-{% block body %} <br>
-    <div class="container d-flex flex-wrap">
-        {% for list in lists %}
-            <div class="card m-2" style="width: 18rem;">
-                <div class="card-body">
+{% block body %}
+	<br>
+	<div class="container d-flex flex-wrap">
+		{% for list in lists %}
+			<div class="card m-2" style="width: 18rem;">
+				<div class="card-body">
 
-                    
-                        <h5 class="card-title" style="color: {{ list.color }}">{{ list.name }}</h5><br>
-                        
-                            {% for task in list.tasks %}
-                            <p class="card-text" >
-                               {# <input type="checkbox" {{ task.completed ? "checked" : ""}} onchange="window.location.href='/update-task-status/{{task.id}}'"> #}
-                               <a style="text-decoration:none" href="/update-task-status/{{task.id}}" class="js-status">
 
-                            {% if task.completed %}
-                                
-                                <i class="fas fa-square"></i>
+					<h5 class="card-title" style="color: {{ list.color }}; text-align:center;">{{ list.name }}</h5>
+<hr>
+					<a href="/create-task/{{ list.id }}" class="text-success">
+						<i class="fas fa-plus">
+							Ajouter une tâche</i>
+					</a><br>
+					<br>
 
-                            {% else %}
-                                 
-                                <i class="far fa-square"></i>
+					{% for task in list.tasks %}
+						<p
+							class="card-text">
+							{# <input type="checkbox" {{ task.completed ? "checked" : ""}} onchange="window.location.href='/update-task-status/{{task.id}}'"> #}
+							<a style="text-decoration:none" href="/update-task-status/{{task.id}}" class="js-status">
 
-                            {% endif %}
-                               
-                               </a>
+								{% if task.completed %}
 
-                                {{task.title}}
-                                <a href="/update-task/{{ task.id }}" class="text-warning"><i class="fas fa-edit"></i></a>
-                                <a href="/delete-task/{{ task.id }}" class="text-danger"><i class="fas fa-trash"></i></a>
-                            </p>
-                                {% endfor %}
+									<i class="fas fa-square"></i>
 
-                    <center>
-                        <a href="/create-task/{{ list.id }}" class="btn btn-success"><i class="fas fa-plus"></i></a>
-                    </center>
-                    </p>
+								{% else %}
 
-                    <a href="/update-list/{{ list.id }}" class="btn btn-warning"><i class="fas fa-edit"></i></a>
-                    <a href="/delete-list/{{ list.id }}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                </div>
-            </div>
-        {% endfor %}
-    </div>
-{% endblock %}
+									<i class="far fa-square"></i>
 
-{% block javascripts %}
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+								{% endif %}
 
-    <script>
-        window.addEventListener("load", event => {
-            document.querySelectorAll("a.js-status").forEach(link => {
-                link.addEventListener("click", updateStatus);
-            });
-        });
+							</a>
 
-    function updateStatus(event ){
-        event.preventDefault();
+							{{task.title}}
+							<a href="/update-task/{{ task.id }}" class="text-warning">
+								<i class="fas fa-edit"></i>
+							</a>
+							<a href="/delete-task/{{ task.id }}" class="text-danger">
+								<i class="fas fa-trash"></i>
+							</a>
+						</p>
+					{% endfor %}
 
-        const checkIcon = this.querySelector("i.fa-square");
 
-        axios.post(this.href).then(response => {
-            if(checkIcon.classList.contains("fas")) {
-                checkIcon.classList.replace("fas", "far");
-            }
-            else {
-                checkIcon.classList.replace("far", "fas");
-            }
-        }).catch(error => {
-            console.error(error);
-            window.alert("Une erreur est survenue");
-        });
-    }
-    
-    </script>
-{% endblock %}
+				</p>
+			</div>
+			<blockquote class="blockquote mb-2">
 
+				<center>
+					<a href="/update-list/{{ list.id }}" class="btn btn-warning">
+						<i class="fas fa-edit"></i>
+					</a>
+					<a href="/delete-list/{{ list.id }}" class="btn btn-danger">
+						<i class="fas fa-trash"></i>
+					</a>
+				</center>
+			</blockquote>
+		</div>
+
+	{% endfor %}
+</div>{% endblock %}{% block javascripts %}
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<script>
+	window.addEventListener("load", event => {
+document.querySelectorAll("a.js-status").forEach(link => {
+link.addEventListener("click", updateStatus);
+});
+});
+
+function updateStatus(event) {
+event.preventDefault();
+
+const checkIcon = this.querySelector("i.fa-square");
+
+axios.post(this.href).then(response => {
+if (checkIcon.classList.contains("fas")) {
+checkIcon.classList.replace("fas", "far");
+} else {
+checkIcon.classList.replace("far", "fas");
+}
+}).catch(error => {
+console.error(error);
+window.alert("Une erreur est survenue");
+});
+}
+</script>{% endblock %}
