@@ -3,9 +3,9 @@
 {% block body %} 
 <div class="container">
 
-        {% if app.request.get("_route") == "create_task" %}
+        {% if app.request.get("_route") == "create_task" %}<br>
        <h3>Créer une nouvelle tâche</h3>
-        {% else %}
+        {% else %}<br>
         <h3>Modifier la tâche {{ task.title }}</h3>
         {% endif %}
 

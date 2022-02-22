@@ -3,9 +3,9 @@
 {% block body %} 
 <div class="container">
 
-        {% if app.request.get("_route") == "create_list" %}
+        {% if app.request.get("_route") == "create_list" %}<br>
        <h3>Créer une nouvelle liste</h3>
-        {% else %}
+        {% else %}<br>
         <h3>Modifier la liste <span style="color:{{ list.color }}">{{ list.name }}</span></h3>
         {% endif %}
 

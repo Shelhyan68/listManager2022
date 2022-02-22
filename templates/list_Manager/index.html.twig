@@ -1,6 +1,6 @@
 {% extends "base.html.twig" %}
 
-{% block body %} 
+{% block body %} <br>
     <div class="container d-flex flex-wrap">
         {% for list in lists %}
             <div class="card m-2" style="width: 18rem;">
@@ -10,9 +10,9 @@
                         <h5 class="card-title" style="color: {{ list.color }}">{{ list.name }}</h5><br>
                         
                             {% for task in list.tasks %}
-                            <p class="card-text">
+                            <p class="card-text" >
                                {# <input type="checkbox" {{ task.completed ? "checked" : ""}} onchange="window.location.href='/update-task-status/{{task.id}}'"> #}
-                               <a href="/update-task-status/{{task.id}}" class="js-status">
+                               <a style="text-decoration:none" href="/update-task-status/{{task.id}}" class="js-status">
 
                             {% if task.completed %}
                                 
