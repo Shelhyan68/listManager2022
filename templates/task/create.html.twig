@@ -4,14 +4,14 @@
 <div class="container">
 
         {% if app.request.get("_route") == "create_task" %}<br>
-       <h3>Créer une nouvelle tâche</h3>
+       <h3>Créer une nouvelle tâche</h3><br>
         {% else %}<br>
         <h3>Modifier la tâche {{ task.title }}</h3>
         {% endif %}
 
     {{ form_start(form) }}
         {{ form_row(form.title) }}
-        {% if app.request.get("_route") == "create_task" %}
+        {% if app.request.get("_route") == "create_task" %}<br>
         <input type="submit" value="Créer" class="btn btn-success mt-2">
         {% else %}
         <input type="submit" value="Modifier" class="btn btn-warning mt-2">
