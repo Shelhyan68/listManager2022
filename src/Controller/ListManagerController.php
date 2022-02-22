@@ -28,6 +28,7 @@ class ListManagerController extends AbstractController {
             $em->getRepository(ListManager::class);
             $em->persist($listManager);
             $em->flush();
+            return $this->redirectToRoute("read_all");
         }
 
         return $this->render("list_Manager/create.html.twig", [
@@ -49,13 +50,11 @@ class ListManagerController extends AbstractController {
     ]);
     }
 
-        /**
-     * @Route("/update-list{id}", name="update_list")
+    /**
+     * @Route("/update-list/{id}", name="update_list")
      */
     public function update(ListManager $list, Request $request, EntityManagerInterface $em): Response
     {
-        //$listManager = new ListManager();
-
         $form = $this->createForm(ListManagerType::class, $list);
         $form->handleRequest($request);
 
@@ -63,12 +62,27 @@ class ListManagerController extends AbstractController {
         {
             $em->getRepository(ListManager::class);
             $em->flush();
+            return $this->redirectToRoute("read_all");
         }
 
         return $this->render("list_Manager/create.html.twig", [
             "form"=>$form->createView(),
             "list"=>$list
         ]);
+    }
+
+    /**
+     * @Route("/delete-list/{id}", name="delete")
+     */
+    public function delete(ListManager $list, EntityManagerInterface $em): Response
+    {
+    
+        $em->getRepository(ListManager::class);
+        $em->remove($list);
+        $em->flush();
+
+            return $this->redirectToRoute("read_all");
+    
     }
 
 }
