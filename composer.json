@@ -100,7 +100,7 @@
         "post-install-cmd": [
             "@auto-scripts",
             "@php bin/console doctrine:schema:update --force",
-            "@php bin/console doctrine:fixtures:load"
+            "@php bin/console doctrine:fixtures:load --force"
         ],
         "post-update-cmd": [
             "@auto-scripts"
