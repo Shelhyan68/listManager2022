@@ -2,13 +2,20 @@
 
 {% block body %}
 	<br>
+	<h5>
+	<center style="color:#00BA25; font-weight: bold;">
+		{% for message in app.flashes('success') %}
+			<p>{{ message }}</p>
+		{% endfor %}
+	</center>
+	</h5>
 	<div class="container d-flex flex-wrap">
 		{% for list in lists %}
 			<div class="card m-2" style="width: 18rem;">
 				<div class="card-body">
 
 
-					<h5 class="card-title" style="color: {{ list.color }}; text-align:center;">{{ list.name }}</h5>
+					<h5 class="card-title" style="color: {{ list.color }}; text-align:center;">{{ list.name }} /{{ list.tasks|length }}</h5>
 					<hr>
 					<a href="/create-task/{{ list.id }}" style="color: {{ list.color }};">
 						<i class="fas fa-plus">
@@ -33,7 +40,7 @@
 
 							</a>
 
-							{{task.title}}
+							{{task.title}} 
 							<a href="/update-task/{{ task.id }}" style="text-decoration:none; color: {{ list.color }};">
 								<i class="fas fa-edit"></i>
 							</a>
@@ -41,6 +48,8 @@
 								<i class="fas fa-trash"></i>
 							</a>
 						</p>
+
+
 					{% endfor %}
 
 
@@ -61,7 +70,9 @@
 		</div>
 
 	{% endfor %}
-</div>{% endblock %}{% block javascripts %}
+</div>{% endblock %}
+
+{% block javascripts %}
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
@@ -88,5 +99,6 @@ console.error(error);
 window.alert("Une erreur est survenue");
 });
 }
+
 </script>{% endblock %}
 

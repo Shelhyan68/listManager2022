@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\ListManager;
+use App\Entity\Task;
 use App\Form\ListManagerType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,15 +26,20 @@ class ListManagerController extends AbstractController {
 
         if($form->isSubmitted() && $form->isValid())
         {
+            $this->addFlash('success', 'Liste enregistrée !');
             $em->getRepository(ListManager::class);
             $em->persist($listManager);
             $em->flush();
             return $this->redirectToRoute("read_all");
         }
+        
 
         return $this->render("list_Manager/create.html.twig", [
             "form"=>$form->createView()
         ]);
+
+        
+
     }
 
 
