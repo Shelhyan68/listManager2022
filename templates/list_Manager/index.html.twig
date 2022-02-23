@@ -2,21 +2,25 @@
 
 {% block body %}
 	<br>
+
 	<h5>
+
 	<center style="color:#00BA25; font-weight: bold;">
 		{% for message in app.flashes('success') %}
 			<p>{{ message }}</p>
 		{% endfor %}
 	</center>
+
 	</h5>
-	<div class="container d-flex flex-wrap">
+	
+	<div class="container d-flex flex-wrap ">
 		{% for list in lists %}
-			<div class="card m-2" style="width: 18rem;">
-				<div class="card-body">
+			<div class="card m-2 border-secondary" style="width: 18rem;">
+				<div class="card-body " >
 
 
 					<h5 class="card-title" style="color: {{ list.color }}; text-align:center;">{{ list.name }} /{{ list.tasks|length }}</h5>
-					<hr>
+					<hr style="height: 1px;">
 					<a href="/create-task/{{ list.id }}" style="color: {{ list.color }};">
 						<i class="fas fa-plus">
 							Ajouter une tâche</i>
