@@ -85,4 +85,18 @@ class TaskController extends AbstractController
 
         return $this->redirectToRoute("read_all");
     }
+
+    /**
+     * @Route("/test", name="read_all_tasks")
+     */
+    public function readAll(EntityManagerInterface $em): Response
+    {
+       $repo  = $em->getRepository(Task::class);
+       $lists = $repo->findAll();
+
+       return $this->render("list_Manager/test.html.twig", [
+        "tasks"=> $lists
+    ]);
+    }
+    
 }

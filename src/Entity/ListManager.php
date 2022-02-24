@@ -50,6 +50,11 @@ class ListManager {
      */
     private $tasks;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Task::class, mappedBy="completed", orphanRemoval=true)
+     */
+    private $status;
+
     public function __construct()
     {
         $this->tasks = new ArrayCollection();
@@ -147,4 +152,24 @@ class ListManager {
         return $this->name;
     }
 
+
+    /**
+     * Get the value of status
+     */ 
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Set the value of status
+     *
+     * @return  self
+     */ 
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
 }

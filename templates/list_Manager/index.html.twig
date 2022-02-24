@@ -18,14 +18,22 @@
 			<div class="card m-2 border-secondary" style="width: 18rem;">
 				<div class="card-body " >
 
+{% set count = 0 %}
+	{% for task in list.tasks %}
+		{% if task.completed == 1 %}
+			{% set count = count + 1 %}
+		{% endif %}
+{% endfor %}
 
-					<h5 class="card-title" style="color: {{ list.color }}; text-align:center;">{{ list.name }} /{{ list.tasks|length }}</h5>
+				<h5 class="card-title" style="color: {{ list.color }}; text-align:center;">{{ list.name }} {{ count }}/{{ list.tasks|length }}</h5>
+					
 					<hr style="height: 1px;">
 					<a href="/create-task/{{ list.id }}" style="color: {{ list.color }};">
 						<i class="fas fa-plus">
 							Ajouter une tâche</i>
 					</a><br>
 					<br>
+
 
 					{% for task in list.tasks %}
 						<p
