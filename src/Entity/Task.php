@@ -23,8 +23,8 @@ class Task
     private $title;
 
     /**
+     * @ORM\ManyToOne(targetEntity=ListManager::class, inversedBy="status")
      * @ORM\Column(type="boolean")
-     * @ORM\JoinColumn(nullable=true)
      */
     private $completed;
 

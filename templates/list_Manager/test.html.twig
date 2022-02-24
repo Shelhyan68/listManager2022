@@ -1,0 +1,16 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+	<br>
+		
+{% set count = 0 %}
+{% for task in tasks %}
+{% if task.completed == 1 %}
+{% set count = count + 1 %}
+    {% endif %}
+{% endfor %}
+<h5 class="card-title">{{ count }}</h5>
+
+
+{% endblock %}
+
