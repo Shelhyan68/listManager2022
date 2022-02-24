@@ -24,6 +24,7 @@ class Task
 
     /**
      * @ORM\Column(type="boolean")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $completed;
 
